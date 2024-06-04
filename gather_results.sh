@@ -61,8 +61,4 @@ else
     echo "Report directory ${report_path} does not exist in the pod."
 fi
 
-# Delete the master pod resources
-kubectl delete -f k8s/jmeter/jmeter-master.yaml
-echo "Master pod resources have been deleted."
-
 cp -r local_result_name/ /mnt/c/tmp
