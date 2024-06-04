@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Source the namespace from the .tmp file
-if [ -f ".tmp" ]; then
-    source .tmp
+# Source the namespace from the .env file
+if [ -f ".env" ]; then
+    source .env
 else
-    echo ".tmp file not found!"
+    echo ".env file not found!"
     exit 1
 fi
 

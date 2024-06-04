@@ -8,6 +8,4 @@ else
     exit 1
 fi
 
-kubectl delete -f k8s/jmeter
-kubectl delete all --all -n $namespace
-kubectl delete all --all -n telegraf-operator
+kubectl create -n $namespace -R -f k8s/
