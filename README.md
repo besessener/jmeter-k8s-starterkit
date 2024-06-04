@@ -2,4 +2,3 @@
 - ./start_test.sh -j my-scenario.jmx -n default -c -m -i 2 -r
 - ./check_progress.sh
 - ./gather_results.sh
-- kubectl delete -R -f k8s/
