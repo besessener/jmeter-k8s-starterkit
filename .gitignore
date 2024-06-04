@@ -1,3 +1,4 @@
 report/
 load_test.sh
 *.log
+.tmp

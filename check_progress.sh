@@ -16,11 +16,17 @@ get_master_pod() {
 # Retrieve the master pod name
 master_pod=$(get_master_pod)
 
-# Check if the master pod exists
+# Check if the master pod exists initially
 if [ -z "${master_pod}" ]; then
     echo "No master pod found in namespace ${namespace}."
     exit 1
 fi
 
-# Execute the stoptest.sh script on the master pod
-kubectl -n "${namespace}" exec -c jmmaster -ti "${master_pod}" -- bash /opt/jmeter/apache-jmeter/bin/stoptest.sh
+# Loop to constantly check if the master pod exists
+while kubectl get pod -n "${namespace}" "${master_pod}" &> /dev/null; do
+    echo "Pod ${master_pod} is still running in namespace ${namespace}."
+    sleep 10  # Wait for 10 seconds before checking again
+done
+
+# Print a message when the pod no longer exists
+echo "Pod ${master_pod} no longer exists in namespace ${namespace}."

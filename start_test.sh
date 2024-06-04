@@ -76,6 +76,9 @@ if [ ! -f "scenario/${jmx_dir}/${jmx}" ]; then
     usage
 fi
 
+# create file with tmp variables
+echo namespace=${namespace} > .tmp
+
 # Recreating each pods
 logit "INFO" "Recreating pod set"
 kubectl -n "${namespace}" delete -f k8s/jmeter/jmeter-master.yaml -f k8s/jmeter/jmeter-slave.yaml 2> /dev/null
