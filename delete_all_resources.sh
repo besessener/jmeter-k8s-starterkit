@@ -8,6 +8,6 @@ else
     exit 1
 fi
 
+kubectl delete -f k8s/jmeter
 kubectl delete all --all -n $namespace
 kubectl delete all --all -n telegraf-operator
-kubectl delete -f k8s/jmeter
