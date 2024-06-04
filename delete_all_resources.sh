@@ -9,3 +9,4 @@ else
 fi
 
 kubectl delete all --all -n $namespace
+kubectl delete all --all -n telegraf-operator
