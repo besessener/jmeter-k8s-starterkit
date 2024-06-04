@@ -47,6 +47,8 @@ done
 report_path="/report"
 local_result_name="local_result_name"
 
+rm -rf local_result_name/
+
 # Check if the report directory exists in the pod
 if kubectl exec -n "${namespace}" "${master_pod}" -- test -d "${report_path}"; then
     kubectl cp -n "${namespace}" "${master_pod}:${report_path}" "${PWD}/${local_result_name}"
