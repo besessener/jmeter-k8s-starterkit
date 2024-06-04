@@ -8,5 +8,4 @@ else
     exit 1
 fi
 
-kubectl create namespace $namespace
 kubectl create -n $namespace -R -f k8s/
