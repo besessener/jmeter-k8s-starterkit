@@ -43,14 +43,18 @@ while true; do
     fi
 done
 
-# Copy the report from the pod to the local machine
-report_path="/report/result"
+#Define variables
+report_path="/report"
 local_result_name="local_result_name"
 
 # Check if the report directory exists in the pod
 if kubectl exec -n "${namespace}" "${master_pod}" -- test -d "${report_path}"; then
     kubectl cp -n "${namespace}" "${master_pod}:${report_path}" "${PWD}/${local_result_name}"
     echo "Report has been copied to ${PWD}/${local_result_name}."
+
+    # Delete the files inside the report directory in the pod
+    kubectl exec -n "${namespace}" "${master_pod}" -- rm -rf ${report_path}/*
+    echo "Files in ${report_path} have been deleted from the pod."
 else
     echo "Report directory ${report_path} does not exist in the pod."
 fi
